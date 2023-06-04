@@ -10,6 +10,8 @@ import EditAvatarProfilePopup from './EditAvatarPopup';
 import AddCardPopup from './AddCardPopup';
 import ConfirmDeletePopup from './ConfirmDeletePopup';
 
+import InfoTooltip from './InfoTooltip';
+
 function App() {
 
   const [cards, setCards] = useState([])
@@ -181,6 +183,8 @@ function App() {
           buttonText={confirmButtonText}
           deletedCard={deletedCard}
         />
+
+        <InfoTooltip />
       </div>
 
     </CurrentUserContext.Provider>
