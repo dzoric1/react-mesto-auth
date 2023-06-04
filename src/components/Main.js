@@ -2,6 +2,8 @@ import { useContext } from 'react';
 import Card from './Card';
 import CurrentUserContext from '../contexts/CurrentUserContext';
 
+import AuthForm from './AuthForm';
+
 import loading from '../assets/images/loading.svg'
 
 function Main({ onEditProfile, onAddCard, onAvatarEdit, onCardClick, onCardLike, cards, onCardDeleteClick, isLoading }) {
