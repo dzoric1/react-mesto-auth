@@ -9,7 +9,7 @@ function useValidationForm() {
     const { name, value } = e.target
     setInputValues({ ...inputValues, [name]: value })
     setErrors({ ...errors, [name]: e.target.validationMessage })
-    setIsValid(e.target.closest('.popup__form').checkValidity())
+    setIsValid(e.target.closest('.form').checkValidity())
   }
 
   function resetForm() {

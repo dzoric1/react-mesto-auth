@@ -1,20 +1,69 @@
-const AuthForm = () => {
+import { Link } from "react-router-dom"
+import { useEffect } from "react";
+import useValidationForm from '../utils/useValidationForm';
+
+const AuthForm = ({
+  title,
+  buttonText,
+  linkText,
+  linkPath,
+  onSubmit
+}) => {
+
+  const { inputValues, errors, isValid, handleChange, resetForm } = useValidationForm()
+
+  useEffect(resetForm, [])
+
+  function handleSubmit(e) {
+    e.preventDefault()
+    onSubmit(inputValues)
+    resetForm()
+  }
+
   return (
     <section className="content__auth auth">
-      <h2 className="auth__title">Регистрация</h2>
-      <form className="auth__form">
+      <h2 className="auth__title">{title}</h2>
+      <form
+        className="auth__form form"
+        onSubmit={handleSubmit}
+        noValidate
+      >
         <label className="auth__fieldset">
-          <input className="auth__input" type="email" placeholder="Email" />
-          <span className="auth__input-error">123</span>
+          <input
+            className="auth__input"
+            type="email"
+            placeholder="Email"
+            name='email'
+            required
+            value={inputValues.email || ''}
+            onChange={handleChange}
+          />
+          <span className="auth__input-error">{errors.email}</span>
         </label>
         <label className="auth__fieldset">
-          <input className="auth__input" type="password" placeholder="Пароль" />
-          <span className="auth__input-error">123</span>
+          <input
+            className="auth__input"
+            type="password"
+            placeholder="Пароль"
+            name='password'
+            required
+            minLength="6"
+            value={inputValues.password || ''}
+            onChange={handleChange}
+          />
+          <span className="auth__input-error">{errors.password}</span>
         </label>
-        <button type="submit" className="auth__submit">Зарегистрироваться</button>
-        <a className="auth__link" href="#">Уже зарегистрированы? Войти</a>
+        <button
+          type="submit"
+          className={`auth__submit ${!isValid ? 'auth__submit_type_disabled' : ''}`}
+          disabled={!isValid}
+        >
+          {buttonText}
+        </button>
+        <Link className="auth__link" to={linkPath}>{linkText}</Link>
       </form>
-    </section>
+
+    </section >
 
   )
 }
