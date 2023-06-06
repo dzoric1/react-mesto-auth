@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom"
-import { useEffect } from "react";
 import useValidationForm from '../utils/useValidationForm';
 
 const AuthForm = ({
@@ -10,14 +9,11 @@ const AuthForm = ({
   onSubmit
 }) => {
 
-  const { inputValues, errors, isValid, handleChange, resetForm } = useValidationForm()
-
-  useEffect(resetForm, [])
+  const { inputValues, errors, isValid, handleChange } = useValidationForm()
 
   function handleSubmit(e) {
     e.preventDefault()
     onSubmit(inputValues)
-    resetForm()
   }
 
   return (

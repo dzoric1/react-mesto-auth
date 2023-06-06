@@ -3,10 +3,9 @@ import PopupWithForm from './PopupWithForm';
 import CurrentUserContext from '../contexts/CurrentUserContext';
 import useValidationForm from '../utils/useValidationForm';
 
-const EditProfilePopup = ({ isOpen, onClose, onUpdateUser, buttonText }) => {
+const EditProfilePopup = ({ isOpen, onClose, onUpdateUser, isLoading }) => {
 
   const { inputValues, errors, isValid, handleChange, setInputValues, resetForm } = useValidationForm()
-
   const currentUser = useContext(CurrentUserContext)
 
   function handleSubmit(e) {
@@ -15,6 +14,7 @@ const EditProfilePopup = ({ isOpen, onClose, onUpdateUser, buttonText }) => {
   }
 
   useEffect(() => {
+    if (isOpen) resetForm()
     setInputValues({
       name: currentUser.name,
       about: currentUser.about
@@ -27,10 +27,9 @@ const EditProfilePopup = ({ isOpen, onClose, onUpdateUser, buttonText }) => {
       title={'Редактировать профиль'}
       isOpen={isOpen}
       onClose={onClose}
-      buttonTitle={buttonText}
+      buttonTitle={isLoading ? 'Сохранение...' : 'Сохранить'}
       onSubmit={handleSubmit}
       isValid={isValid}
-      resetForm={resetForm}
     >
       <label className="popup__fieldset">
         <input

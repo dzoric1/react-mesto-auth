@@ -1,10 +1,14 @@
+import { useEffect } from "react";
 import PopupWithForm from "./PopupWithForm"
 import useValidationForm from "../utils/useValidationForm"
 
-const AddCardPopup = ({ isOpen, onClose, onAddCard, buttonText }) => {
+const AddCardPopup = ({ isOpen, onClose, onAddCard, isLoading }) => {
 
   const { inputValues, errors, isValid, handleChange, resetForm } = useValidationForm()
 
+  useEffect(() => {
+    if (isOpen) resetForm()
+  }, [isOpen])
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -17,10 +21,9 @@ const AddCardPopup = ({ isOpen, onClose, onAddCard, buttonText }) => {
       title={'Новое место'}
       isOpen={isOpen}
       onClose={onClose}
-      buttonTitle={buttonText}
+      buttonTitle={isLoading ? 'Создание...' : 'Создать'}
       onSubmit={handleSubmit}
       isValid={isValid}
-      resetForm={resetForm}
     >
       <label className="popup__fieldset">
         <input

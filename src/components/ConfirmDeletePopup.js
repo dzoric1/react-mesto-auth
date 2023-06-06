@@ -1,6 +1,6 @@
 import PopupWithForm from './PopupWithForm';
 
-const ConfirmDeletePopup = ({ isOpen, onClose, onConfirm, buttonText, deletedCard }) => {
+const ConfirmDeletePopup = ({ isOpen, onClose, onConfirm, isLoading, deletedCard }) => {
 
   const handleConfirm = (e) => {
     e.preventDefault();
@@ -13,7 +13,7 @@ const ConfirmDeletePopup = ({ isOpen, onClose, onConfirm, buttonText, deletedCar
       title={'Вы уверены?'}
       isOpen={isOpen}
       onClose={onClose}
-      buttonTitle={buttonText}
+      buttonTitle={isLoading ? 'Удаление...' : 'Да'}
       onSubmit={handleConfirm}
       isValid={true}
     />

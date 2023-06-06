@@ -1,7 +1,7 @@
 import success from '../assets/images/success.svg'
 import failure from '../assets/images/failure.svg'
 
-const InfoTooltip = ({ onClose, isOpen, isSuccess }) => {
+const InfoTooltip = ({ onClose, isOpen, isSuccess, text }) => {
   return (
     <div className={`popup popup_type_info ${isOpen ? 'popup_opened' : ''}`}>
       <div className="popup__container popup__container_info">
@@ -18,8 +18,7 @@ const InfoTooltip = ({ onClose, isOpen, isSuccess }) => {
         />
         <p
           className='popup__info-text'>
-          {isSuccess ? 'Вы успешно зарегистрировались!'
-            : 'Что-то пошло не так! Попробуйте ещё раз!'}
+          {text || ''}
         </p>
       </div>
     </div>

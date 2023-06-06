@@ -2,9 +2,7 @@ import { useEffect } from 'react'
 
 function PopupWithForm({ name, title, isOpen, onClose, buttonTitle, children, onSubmit, isValid, resetForm }) {
 
-  useEffect(() => {
-    if (resetForm) resetForm()
-  }, [onClose])
+
 
   return (
     <div

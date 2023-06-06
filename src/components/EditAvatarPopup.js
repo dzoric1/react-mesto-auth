@@ -1,16 +1,19 @@
+import { useEffect } from "react";
 import useValidationForm from "../utils/useValidationForm";
 import PopupWithForm from "./PopupWithForm"
 
-const EditAvatarProfilePopup = ({ isOpen, onClose, onUpdateAvatar, buttonText }) => {
+const EditAvatarProfilePopup = ({ isOpen, onClose, onUpdateAvatar, isLoading }) => {
 
   const { inputValues, errors, isValid, handleChange, resetForm } = useValidationForm()
 
+  useEffect(() => {
+    if (isOpen) resetForm()
+  }, [isOpen])
 
   function handleSubmit(e) {
     e.preventDefault();
     onUpdateAvatar(inputValues);
   }
-
 
   return (
     <PopupWithForm
@@ -18,10 +21,9 @@ const EditAvatarProfilePopup = ({ isOpen, onClose, onUpdateAvatar, buttonText })
       title={'Обновить аватар'}
       isOpen={isOpen}
       onClose={onClose}
-      buttonTitle={buttonText}
+      buttonTitle={isLoading ? 'Сохранение...' : 'Сохранить'}
       onSubmit={handleSubmit}
       isValid={isValid}
-      resetForm={resetForm}
     >
       <label className="popup__fieldset">
         <input

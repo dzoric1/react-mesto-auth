@@ -9,7 +9,7 @@ function Card({ card, onCardClick, onCardLike, onCardDeleteClick }) {
   const isLiked = card.likes.some(i => i._id === currentUser._id)
 
   return (
-    <li className="gallery__card card">
+    <article className="gallery__card card">
       <img
         className="card__image"
         src={card.link ? card.link : notFound}
@@ -29,7 +29,7 @@ function Card({ card, onCardClick, onCardLike, onCardDeleteClick }) {
         </div>
       </div>
       {isOwner && <button className="card__delete" type="button" aria-label="Удалить" onClick={() => onCardDeleteClick(card._id)}></button>}
-    </li>
+    </article>
   )
 }
 
