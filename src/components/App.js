@@ -194,9 +194,9 @@ function App() {
       .catch(err => {
         setIsSuccessInfoTooltipStatus(false)
         setInfoTooltipText('Что-то пошло не так! Попробуйте ещё раз!')
+        setInfoToolTipPopupOpen(true)
         console.log(err)
       })
-      .finally(() => setInfoToolTipPopupOpen(true))
   }
 
   return (
